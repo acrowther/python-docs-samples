@@ -1,0 +1,655 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"n0T3b24NWFlDh4JslNKCHQavV-Y/cgl1oW2uYGg-k_EIm5k2X4ZXHlk\"",
+ "discoveryVersion": "v1",
+ "id": "storagetransfer:v1",
+ "name": "storagetransfer",
+ "version": "v1",
+ "revision": "20150507",
+ "title": "Google Storage Transfer API",
+ "description": "Google Storage Transfer API service.",
+ "ownerDomain": "google.com",
+ "ownerName": "Google",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "documentationLink": "",
+ "protocol": "rest",
+ "baseUrl": "https://test-storagetransfer-googleapis.sandbox.google.com/",
+ "basePath": "/",
+ "rootUrl": "https://test-storagetransfer-googleapis.sandbox.google.com/",
+ "servicePath": "",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/cloud-platform": {
+     "description": "View and manage your data across Google Cloud Platform services"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "AwsAccessKey": {
+   "id": "AwsAccessKey",
+   "type": "object",
+   "properties": {
+    "accessKeyId": {
+     "type": "string"
+    },
+    "secretAccessKey": {
+     "type": "string"
+    }
+   }
+  },
+  "AwsS3Data": {
+   "id": "AwsS3Data",
+   "type": "object",
+   "properties": {
+    "awsAccessKey": {
+     "$ref": "AwsAccessKey"
+    },
+    "bucketName": {
+     "type": "string"
+    }
+   }
+  },
+  "Date": {
+   "id": "Date",
+   "type": "object",
+   "properties": {
+    "day": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "month": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "year": {
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "Empty": {
+   "id": "Empty",
+   "type": "object"
+  },
+  "GcsData": {
+   "id": "GcsData",
+   "type": "object",
+   "properties": {
+    "bucketName": {
+     "type": "string"
+    }
+   }
+  },
+  "GoogleServiceAccount": {
+   "id": "GoogleServiceAccount",
+   "type": "object",
+   "properties": {
+    "accountEmail": {
+     "type": "string"
+    }
+   }
+  },
+  "HttpData": {
+   "id": "HttpData",
+   "type": "object",
+   "properties": {
+    "listUrl": {
+     "type": "string"
+    }
+   }
+  },
+  "ListOperationsResponse": {
+   "id": "ListOperationsResponse",
+   "type": "object",
+   "properties": {
+    "nextPageToken": {
+     "type": "string"
+    },
+    "operations": {
+     "type": "array",
+     "items": {
+      "$ref": "Operation"
+     }
+    }
+   }
+  },
+  "ListTransferJobsResponse": {
+   "id": "ListTransferJobsResponse",
+   "type": "object",
+   "properties": {
+    "nextPageToken": {
+     "type": "string"
+    },
+    "transferJob": {
+     "type": "array",
+     "items": {
+      "$ref": "TransferJob"
+     }
+    }
+   }
+  },
+  "ObjectConditions": {
+   "id": "ObjectConditions",
+   "type": "object",
+   "properties": {
+    "excludePrefix": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "includePrefix": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "maxTimeElapsedSinceLastModification": {
+     "type": "string"
+    },
+    "minTimeElapsedSinceLastModification": {
+     "type": "string"
+    }
+   }
+  },
+  "Operation": {
+   "id": "Operation",
+   "type": "object",
+   "properties": {
+    "done": {
+     "type": "boolean"
+    },
+    "error": {
+     "$ref": "Status"
+    },
+    "metadata": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "any"
+     }
+    },
+    "name": {
+     "type": "string"
+    },
+    "response": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "any"
+     }
+    }
+   }
+  },
+  "PauseTransferOperationRequest": {
+   "id": "PauseTransferOperationRequest",
+   "type": "object"
+  },
+  "ResumeTransferOperationRequest": {
+   "id": "ResumeTransferOperationRequest",
+   "type": "object"
+  },
+  "Schedule": {
+   "id": "Schedule",
+   "type": "object",
+   "properties": {
+    "scheduleEndDate": {
+     "$ref": "Date"
+    },
+    "scheduleStartDate": {
+     "$ref": "Date"
+    },
+    "startTimeOfDay": {
+     "$ref": "TimeOfDay"
+    }
+   }
+  },
+  "Status": {
+   "id": "Status",
+   "type": "object",
+   "properties": {
+    "code": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "details": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "any"
+      }
+     }
+    },
+    "message": {
+     "type": "string"
+    }
+   }
+  },
+  "TimeOfDay": {
+   "id": "TimeOfDay",
+   "type": "object",
+   "properties": {
+    "hours": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "minutes": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "nanos": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "seconds": {
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "TransferJob": {
+   "id": "TransferJob",
+   "type": "object",
+   "properties": {
+    "creationTime": {
+     "type": "string"
+    },
+    "deletionTime": {
+     "type": "string"
+    },
+    "jobDescription": {
+     "type": "string"
+    },
+    "jobId": {
+     "type": "string"
+    },
+    "jobState": {
+     "type": "string",
+     "enum": [
+      "DELETED",
+      "DISABLED",
+      "ENABLED",
+      "JOB_STATE_UNSPECIFIED"
+     ],
+     "enumDescriptions": [
+      "",
+      "",
+      "",
+      ""
+     ]
+    },
+    "lastModificationTime": {
+     "type": "string"
+    },
+    "projectId": {
+     "type": "string"
+    },
+    "schedule": {
+     "$ref": "Schedule"
+    },
+    "transferSpec": {
+     "$ref": "TransferSpec"
+    }
+   }
+  },
+  "TransferOptions": {
+   "id": "TransferOptions",
+   "type": "object",
+   "properties": {
+    "deleteObjectsFromSourceAfterTransfer": {
+     "type": "boolean"
+    },
+    "deleteObjectsUniqueInSink": {
+     "type": "boolean"
+    },
+    "overwriteObjectsAlreadyExistingInSink": {
+     "type": "boolean"
+    }
+   }
+  },
+  "TransferSpec": {
+   "id": "TransferSpec",
+   "type": "object",
+   "properties": {
+    "awsS3DataSource": {
+     "$ref": "AwsS3Data"
+    },
+    "gcsDataSink": {
+     "$ref": "GcsData"
+    },
+    "gcsDataSource": {
+     "$ref": "GcsData"
+    },
+    "httpDataSource": {
+     "$ref": "HttpData"
+    },
+    "objectConditions": {
+     "$ref": "ObjectConditions"
+    },
+    "transferOptions": {
+     "$ref": "TransferOptions"
+    }
+   }
+  }
+ },
+ "methods": {
+  "getGoogleServiceAccount": {
+   "id": "storagetransfer.getGoogleServiceAccount",
+   "path": "v1:getGoogleServiceAccount",
+   "httpMethod": "GET",
+   "description": "Returns the Google service account that is used by the Storage Transfer service to access GCS buckets in transfers associated with the GDC project. One Google service account is associated with one GDC project. Users should add this service account to the GCS bucket ACLs to grant access permissions to the Storage Transfer service. This service account is created and owned by the Storage Transfer service and can only be used by the Storage Transfer service.",
+   "parameters": {
+    "projectId": {
+     "type": "string",
+     "location": "query"
+    }
+   },
+   "response": {
+    "$ref": "GoogleServiceAccount"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/cloud-platform"
+   ]
+  }
+ },
+ "resources": {
+  "transferJobs": {
+   "methods": {
+    "create": {
+     "id": "storagetransfer.transferJobs.create",
+     "path": "v1/transferJobs",
+     "httpMethod": "POST",
+     "description": "Creates a transfer job that runs periodically.",
+     "request": {
+      "$ref": "TransferJob"
+     },
+     "response": {
+      "$ref": "TransferJob"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "list": {
+     "id": "storagetransfer.transferJobs.list",
+     "path": "v1/transferJobs",
+     "httpMethod": "GET",
+     "description": "Lists transfer jobs.",
+     "parameters": {
+      "jobId": {
+       "type": "string",
+       "repeated": true,
+       "location": "query"
+      },
+      "jobState": {
+       "type": "string",
+       "enum": [
+        "DELETED",
+        "DISABLED",
+        "ENABLED",
+        "JOB_STATE_UNSPECIFIED"
+       ],
+       "enumDescriptions": [
+        "",
+        "",
+        "",
+        ""
+       ],
+       "repeated": true,
+       "location": "query"
+      },
+      "pageSize": {
+       "type": "integer",
+       "format": "int32",
+       "location": "query"
+      },
+      "pageToken": {
+       "type": "string",
+       "location": "query"
+      },
+      "projectId": {
+       "type": "string",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "ListTransferJobsResponse"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "update": {
+     "id": "storagetransfer.transferJobs.update",
+     "path": "v1/{+jobId}",
+     "httpMethod": "PUT",
+     "description": "Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating the scheduling of a job is not allowed.",
+     "parameters": {
+      "jobId": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "jobId"
+     ],
+     "request": {
+      "$ref": "TransferJob"
+     },
+     "response": {
+      "$ref": "TransferJob"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    }
+   }
+  },
+  "transferOperations": {
+   "methods": {
+    "cancel": {
+     "id": "storagetransfer.transferOperations.cancel",
+     "path": "v1/{+name}:cancel",
+     "httpMethod": "POST",
+     "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it shall return `google.rpc.Code.UNIMPLEMENTED`. Clients may use [Operations.GetOperation] or other methods to check whether the cancellation succeeded or the operation completed despite cancellation.",
+     "parameters": {
+      "name": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "name"
+     ],
+     "response": {
+      "$ref": "Empty"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "delete": {
+     "id": "storagetransfer.transferOperations.delete",
+     "path": "v1/{+name}",
+     "httpMethod": "DELETE",
+     "description": "Deletes a long-running operation. It indicates the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it shall return `google.rpc.Code.UNIMPLEMENTED`.",
+     "parameters": {
+      "name": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "name"
+     ],
+     "response": {
+      "$ref": "Empty"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "get": {
+     "id": "storagetransfer.transferOperations.get",
+     "path": "v1/{+name}",
+     "httpMethod": "GET",
+     "description": "Gets the latest state of a long-running operation. Clients may use this method to poll the operation result at intervals as recommended by the API service.",
+     "parameters": {
+      "name": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "name"
+     ],
+     "response": {
+      "$ref": "Operation"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "list": {
+     "id": "storagetransfer.transferOperations.list",
+     "path": "v1/{name}",
+     "httpMethod": "GET",
+     "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it shall return `google.rpc.Code.UNIMPLEMENTED`.",
+     "parameters": {
+      "filter": {
+       "type": "string",
+       "location": "query"
+      },
+      "name": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      },
+      "pageSize": {
+       "type": "integer",
+       "format": "int32",
+       "location": "query"
+      },
+      "pageToken": {
+       "type": "string",
+       "location": "query"
+      }
+     },
+     "parameterOrder": [
+      "name"
+     ],
+     "response": {
+      "$ref": "ListOperationsResponse"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "pause": {
+     "id": "storagetransfer.transferOperations.pause",
+     "path": "v1/{+name}:pause",
+     "httpMethod": "POST",
+     "description": "Pauses a transfer operation.",
+     "parameters": {
+      "name": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "name"
+     ],
+     "request": {
+      "$ref": "PauseTransferOperationRequest"
+     },
+     "response": {
+      "$ref": "Empty"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    },
+    "resume": {
+     "id": "storagetransfer.transferOperations.resume",
+     "path": "v1/{+name}:resume",
+     "httpMethod": "POST",
+     "description": "Resumes a transfer operation that is paused.",
+     "parameters": {
+      "name": {
+       "type": "string",
+       "required": true,
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "name"
+     ],
+     "request": {
+      "$ref": "ResumeTransferOperationRequest"
+     },
+     "response": {
+      "$ref": "Empty"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/cloud-platform"
+     ]
+    }
+   }
+  }
+ }
+}
